@@ -1,0 +1,8 @@
+# This test is used to ensure a request without an attack
+# results with a normal (200) response.
+#
+# @OK       RESPONSE_STATUS ^200$
+# @Unknown
+#
+GET /?b00-01 HTTP/1.0
+

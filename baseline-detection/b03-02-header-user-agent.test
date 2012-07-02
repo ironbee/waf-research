@@ -1,0 +1,8 @@
+# Attack in User-Agent request header.
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b03-02 HTTP/1.0
+User-Agent: UNION%20SELECT
+

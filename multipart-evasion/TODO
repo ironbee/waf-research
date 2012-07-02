@@ -1,0 +1,8 @@
+
+- Use different character set for a part (e.g., Content-Type: text/plain;charset=...)
+
+- Use Content-Transfer-Encoding
+
+- Field names can be encoded using RFC 2047?
+
+

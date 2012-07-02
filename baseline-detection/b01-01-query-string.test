@@ -1,0 +1,7 @@
+# Attack in query string.
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b01-01%20UNION%20SELECT HTTP/1.0
+

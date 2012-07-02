@@ -1,0 +1,18 @@
+These tests are designed to establish a baseline by determining what
+parts of a request are being inspected.
+
+To run the tests:
+
+ 1. Configure the WAF to block the pattern "UNION SELECT", using any
+    status code other than 200
+
+ 2. Run the baseline test and check that it returns OK
+
+   ../run-test.pl 192.168.3.100:8080 b00-01-normal.test
+
+ 3. Run all tests and record results:
+
+   ../run-test.pl 192.168.3.100:8080 *.test
+
+ 4. When a test reports MISSED, that means that the device did not detect
+    the attack payload.

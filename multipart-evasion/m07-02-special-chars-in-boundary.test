@@ -1,0 +1,28 @@
+# Test if a character that is not allowed in boundary value will
+# affect what value is used in the end: comma.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+# xxxxxxxxx (403)
+#
+# PHP 5.2.3 - uses "0000" as boundary
+#
+POST /?m07-02 HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000,1111
+Content-Length: 273
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--

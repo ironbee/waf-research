@@ -1,0 +1,31 @@
+# Send a specially-crafter Content-Disposition value to exploit
+# the unusual parsing implementation in PHP.
+#
+# ModSecurity 2.6.5 and earlier incorrectly parse the request, mistaking the
+# payload part for a file. PHP sees it as variable "name".
+#
+# At the time this evasion was tested, ModSecurity Core Rules (CRS) had a
+# broad evasion detection rule that catches this attack, but only if configured
+# in blocking mode.
+# 
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+POST /?mXX HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 293
+
+--0000
+Content-Disposition: form-data; name=x';filename="';name=name;"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--

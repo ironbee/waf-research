@@ -1,0 +1,8 @@
+# Attack in request protocol
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b06-01 UNION%20SELECT/1.0
+
+

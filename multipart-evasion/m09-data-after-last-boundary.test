@@ -1,0 +1,30 @@
+# Send an extra part (after the last boundary).
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+# - PHP 5.3.0 ignores parts after final boundary
+#
+POST /?m09-01 HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 357
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--
+Content-Disposition: form-data; name="name"
+
+Smith John
+--0000--
+Some text here

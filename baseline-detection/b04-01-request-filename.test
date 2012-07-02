@@ -1,0 +1,8 @@
+# Attack in request filename
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /UNION%20SELECT?b04-01 HTTP/1.0
+
+

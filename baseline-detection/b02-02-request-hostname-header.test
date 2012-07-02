@@ -1,0 +1,8 @@
+# Attack in request hostname (header)
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b02-02 HTTP/1.0
+Host: UNION%20SELECT.com
+

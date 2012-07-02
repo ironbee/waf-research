@@ -1,0 +1,16 @@
+# Attack payload in request body (JSON). We encode a few characters
+# to prevent the device from blindly looking into request body.
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+POST /?b09-1 HTTP/1.1
+Content-Length: 41
+Content-Type: application/json
+User-Agent: Mozilla
+
+{
+    "name": "\u0055NION SE\u004cECT"
+}
+
+

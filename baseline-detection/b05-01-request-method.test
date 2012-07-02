@@ -1,0 +1,8 @@
+# Attack in request method
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+UNION%20SELECT /?b05-01 HTTP/1.0
+
+

@@ -1,0 +1,19 @@
+# Attack payload in trailing request header.
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+POST /?b07-1 HTTP/1.1
+Transfer-Encoding: chunked
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla
+Cookie: name=value
+
+9
+012345678
+1
+9
+0
+Cookie: name=UNION%20SELECT
+
+

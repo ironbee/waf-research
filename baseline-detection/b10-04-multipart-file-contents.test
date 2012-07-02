@@ -1,0 +1,23 @@
+# Attack payload in file contents
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+POST /?b10-04 HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 275
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smit@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+UNION SELECT
+--0000--

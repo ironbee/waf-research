@@ -1,0 +1,24 @@
+# Test for case-insensitive comparison of boundary values.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+#
+POST /?m10-01 HTTP/1.0
+Content-Type: multipart/form-data; boundary=aBcD
+Content-Length: 273
+
+--abcd
+Content-Disposition: form-data; name="name"
+
+John Smith
+--abcd
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--abcd
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--abcd--

@@ -1,0 +1,26 @@
+# Test of the quoting mechanism, with an attempt to use a double
+# quote as a boundary character.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+# - PHP 5.2.3 - uses "00\" as boundary
+#
+POST /?m08-04 HTTP/1.0
+Content-Type: multipart/form-data; boundary="00\"00"
+Content-Length: 277
+
+--00"00
+Content-Disposition: form-data; name="name"
+
+John Smith
+--00"00
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--00"00
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--00"00--

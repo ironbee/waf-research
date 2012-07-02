@@ -1,0 +1,8 @@
+# Attack in random header.
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b03-01 HTTP/1.0
+Host: UNION%20SELECT
+

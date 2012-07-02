@@ -1,0 +1,19 @@
+Hostname Evasion Tests
+----------------------
+
+- Use a different hostname in the request line and Host header
+- Case sensitivity
+- Multiple dots
+- Trailing dot(s)
+- Append port information
+- Experiment with invalid port numbers (e.g., overflow)
+- Use different IP address formats
+- Encode characters
+- %uHHHH
+- %HH
+- UTF-8
+- Punycode
+- Use whitespace before and after hostname, between labels
+- Multiple Host headers
+- Header folding with the Host header
+- Trailing Host header

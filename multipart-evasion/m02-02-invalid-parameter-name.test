@@ -1,0 +1,27 @@
+# Append random text to the parameter name. The aim is to detect
+# implementations that search for "boundary", then search for "=",
+# missing the stuff in between.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+# PHP 5.2.3 - does not recognise boundary.
+#
+POST /?m02-02 HTTP/1.0
+Content-Type: multipart/form-data; boundary123=0000
+Content-Length: 273
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--

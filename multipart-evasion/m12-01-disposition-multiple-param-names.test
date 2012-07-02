@@ -1,0 +1,28 @@
+# Use two part names. Some implementation may use the first,
+# and some may use the second. The desired outcode is for the WAF
+# to block the request.
+#
+# This evasion technique is aimed at the rules that target only
+# certain variables.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+POST /?m12-01 HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 286
+
+--0000
+Content-Disposition: form-data; name="XXXX"; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--

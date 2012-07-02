@@ -1,0 +1,8 @@
+# Attack payload in basic auth username
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b03-05 HTTP/1.0
+Authorization: Basic VU5JT04gU0VMRUNUOnRlc3Q=
+

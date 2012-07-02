@@ -1,0 +1,8 @@
+# Attack payload in cookie
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Missed
+#
+GET /?b03-04 HTTP/1.0
+Cookie: name=UNION%20SELECT
+

@@ -1,0 +1,23 @@
+# Test for parsers that test only the first 19 characters in MIME type.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+POST /?m11-06 HTTP/1.0
+Content-Type: multipart/form-datax; boundary=0000
+Content-Length: 273
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--

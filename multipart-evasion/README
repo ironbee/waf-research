@@ -1,0 +1,35 @@
+These tests are designed to test multipart/form-data parsers for sensitivity
+to partially malformed requests. The tests purposefully do not contain any attack
+patterns. The idea is to only test one aspect of processing at a time. If we
+determine a weakness in a particular implementation, we can attempt to craft an
+exploit for it.
+
+The test mXX-modsecurity-evasion.test contains an example of one such
+exploit.
+
+To run the tests:
+
+ 1. Configure the WAF to:
+
+   1.1. Be extra sensitive to malformed traffic
+   1.2. Block with any response other than 200
+
+ 2. Run the baseline test and check that it returns OK
+
+   ../run-test.pl 192.168.3.100:8080 m00-01-normal.test
+
+ 3. Run all tests and record results:
+
+   ../run-test.pl 192.168.3.100:8080 *.test
+
+ 4. Examine WAF warnings and error messages
+
+   4.1. Ensure that no requests were blocked for any issue other than
+        malformed multipart/form-data traffic
+   4.2. Repeat tests as necessary
+   4.3. Record the final set of warnings and errors, as they may
+        be helpful in determining whether a weakness is a genuine
+        weakness and whether it can be exploited. Use an export feature
+        where available, screenshots of admin interfaces as last
+        resort.
+
