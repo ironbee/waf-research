@@ -1,0 +1,7 @@
+# Test whether %u encoded chacters in path are decoded.
+#
+# @Yes RESPONSE_BODY test\.txt
+# @No
+#
+GET /et/%u0074est.txt HTTP/1.0
+

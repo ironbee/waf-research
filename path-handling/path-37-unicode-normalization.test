@@ -1,0 +1,7 @@
+# Is Unicode normalized before it is used for filesystem access?
+#
+# @No  RESPONSE_STATUS ^404
+# @Yes RESPONSE_BODY ^test\.txt
+# @Unknown
+GET /et/bogus/%u2025/test.txt HTTP/1.0
+

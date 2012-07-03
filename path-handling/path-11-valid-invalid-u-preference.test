@@ -1,0 +1,9 @@
+# Test how web server handles the case where the file requested
+# in request (after %u-decoding) does not exist, but the file
+# before %u-decoding does exist.
+#
+# @Valid   RESPONSE_BODY ^d\.txt
+# @Invalid RESPONSE_BODY ^%64\.txt
+# @Unknown
+GET /et/%u0064.txt HTTP/1.0
+

@@ -1,0 +1,7 @@
+# Test whether server accepts backslash character as path
+# segment separator.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No  RESPONSE_STATYS ^400
+GET /et\test.txt HTTP/1.0
+

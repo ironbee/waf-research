@@ -1,0 +1,7 @@
+# Tests whether server URL-decodes path twice.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No  RESPONSE_STATUS ^404
+# @Unknown
+GET /et/%2574est.txt HTTP/1.0
+

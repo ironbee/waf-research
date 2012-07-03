@@ -1,0 +1,6 @@
+# Test whether 3-byte overlong bare UTF-8 separator sequence is allowed.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /età€¯test.txt HTTP/1.0
+

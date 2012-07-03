@@ -1,0 +1,6 @@
+# This is a baseline test to establish that we can send a simple request
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et/test.txt HTTP/1.0
+

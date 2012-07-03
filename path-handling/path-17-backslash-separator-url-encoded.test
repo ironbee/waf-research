@@ -1,0 +1,5 @@
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et%5ctest.txt HTTP/1.0
+

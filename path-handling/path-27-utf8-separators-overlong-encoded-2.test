@@ -1,0 +1,6 @@
+# Test whether 2-byte overlong encoded UTF-8 separator sequence is allowed.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et%c0%aftest.txt HTTP/1.0
+

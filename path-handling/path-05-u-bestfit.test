@@ -1,0 +1,6 @@
+# Test whether best-fit mapping is performed for %u encoded characters.
+#
+# @Yes RESPONSE_BODY ^Ristic
+# @No
+GET /et/Risti%u0107.txt HTTP/1.0
+

@@ -1,0 +1,7 @@
+# How does web server behave if there's a bare control character in path
+#
+# @Status_400 RESPONSE_STATUS ^400
+# @No_effect  RESPONSE_STATUS ^404
+# @Unknown
+GET /et/test.txt HTTP/1.0
+

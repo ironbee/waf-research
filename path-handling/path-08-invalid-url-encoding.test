@@ -1,0 +1,8 @@
+# Test how web server reacts to invalid URL-encoded characters in path
+#
+# @Preserves_% RESPONSE_BODY ^te%st\.txt
+# @Removes_%   RESPONSE_BODY ^test\.txt
+# @Status_400  RESPONSE_STATUS ^400$
+# @Unknown
+GET /et/te%st.txt HTTP/1.0
+

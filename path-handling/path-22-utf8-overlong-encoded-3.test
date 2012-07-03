@@ -1,0 +1,6 @@
+# Test whether 3-byte overlong encoded UTF-8 non-separator sequence is allowed.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et/%e0%81%b4est.txt HTTP/1.0
+

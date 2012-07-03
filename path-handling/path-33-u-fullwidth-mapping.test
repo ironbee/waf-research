@@ -1,0 +1,9 @@
+# Test whether a fullwidth form will be converted to an ASCII
+# character. Strictly speaking, this is the same test as the one
+# for best-fit mapping, but we want to test for a special handling
+# of fullwidth mappings here.
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et/%uff54est.txt HTTP/1.0
+

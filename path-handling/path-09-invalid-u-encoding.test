@@ -1,0 +1,8 @@
+# Test how web server handles invalid %u encodings in path
+#
+# @Preserves_% RESPONSE_BODY ^%test\.txt
+# @Removes_%   RESPONSE_BODY ^test\.txt
+# @Status_400  RESPONSE_STATUS ^400$
+# @Unknown
+GET /et/%test.txt HTTP/1.0
+

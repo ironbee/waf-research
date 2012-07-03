@@ -1,0 +1,7 @@
+# Test how server behaves with invalid UTF-8 encoding in path.
+#
+# @No_effect  RESPONSE_STATUS ^404
+# @Status_400 RESPONSE_STATUS ^400
+# @Unknown
+GET /et/%c0%01test.txt HTTP/1.0
+

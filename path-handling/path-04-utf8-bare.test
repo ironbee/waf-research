@@ -1,0 +1,7 @@
+# Test whether bare UTF-8 characters are allowed in file names
+#
+# @No  RESPONSE_STATUS 404
+# @Yes RESPONSE_BODY ^Risti
+# @Error
+GET /et/Ristić.txt HTTP/1.0
+

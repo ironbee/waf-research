@@ -1,0 +1,7 @@
+# Test whether UTF-8 encoded characters are allowed in filename
+#
+# @No  RESPONSE_STATUS 404
+# @Yes RESPONSE_BODY ^Risti
+# @Error
+GET /et/Risti%c4%87.txt HTTP/1.0
+

@@ -1,0 +1,6 @@
+# Test the conversion of encoded UTF-8 fullwidth characters to ASCII
+#
+# @Yes RESPONSE_BODY ^test\.txt
+# @No
+GET /et/%ef%bd%94est.txt HTTP/1.0
+

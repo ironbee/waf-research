@@ -1,0 +1,8 @@
+# Test how web server reacts to URL-encoded NUL byte in path.
+#
+# @Removes_NUL     RESPONSE_BODY ^test\.txt\.txt
+# @Terminates_path RESPONSE_BODY ^test\.txt
+# @Status_400      RESPONSE_STATUS ^400
+# @Unknown
+GET /et/test.txt%00.txt HTTP/1.0
+
