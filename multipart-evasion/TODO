@@ -1,8 +1,25 @@
 
+Longs shots below:
+
 - Use different character set for a part (e.g., Content-Type: text/plain;charset=...)
 
-- Use Content-Transfer-Encoding
+- Use Content-Transfer-Encoding for parts. Candidates:
+  - 7bit, 8bit, binary (all 3 identity)
+  - quoted-printable
+  - base64
 
-- Field names can be encoded using RFC 2047?
+- Field names can be encoded using RFC 2047, but are there any implementations
+  that support this feature?
 
+- The spec allows submission of multiple files using multipart/mixed, but I
+  am not aware of anyone implementing this feature.
 
+Documentation:
+
+- http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+
+- Returning Values from Forms: multipart/form-data, http://www.ietf.org/rfc/rfc2388.txt
+
+- Form-based File Upload in HTML, http://www.ietf.org/rfc/rfc1867.txt
+
+- Also see: http://tools.ietf.org/html/rfc2231
