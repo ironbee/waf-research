@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="13.2">
+<project version="13.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options/>
     </meta>
     <projectTree name="Protocol-Level%20Evasion%20of%20Web%20Application%20Firewalls.xpr">
-        <file name="pdf.xsl"/>
         <file name="Protocol-Level%20Evasion%20of%20Web%20Application%20Firewalls.xml"/>
         <file name="whitepaper.xsl"/>
     </projectTree>
