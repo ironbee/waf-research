@@ -1,0 +1,2 @@
+<% Response.Write("test.asp") %>
+

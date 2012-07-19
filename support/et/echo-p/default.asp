@@ -1,0 +1,1 @@
+<% Response.Write(Request.QueryString("p")) %>
