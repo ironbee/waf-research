@@ -1,0 +1,15 @@
+
+Missing tests:
+
+- 39 Web server supports PATH_INFO
+- 40 Web server supports path segment parameters
+- 41 Web server supports short filenames on Windows
+- 42 Web server supports Alternate Data Streams
+
+Test candidates:
+
+- Path truncation
+- Unicode: Removes non-characters
+- Unicode: Handling of invalid byte sequences
+- Unicode: Performs normalization
+- Unicode: Whitespace handling
