@@ -1,4 +1,4 @@
-# Send a specially-crafter Content-Disposition value to exploit
+# Send a specially-crafted Content-Disposition value to exploit
 # the unusual parsing implementation in PHP.
 #
 # ModSecurity 2.6.5 and earlier incorrectly parse the request, mistaking the
@@ -11,7 +11,7 @@
 # @Blocked  RESPONSE_STATUS !^200
 # @Missed
 #
-POST /?mXX HTTP/1.0
+POST /?m14-01 HTTP/1.0
 Content-Type: multipart/form-data; boundary=0000
 Content-Length: 293
 
