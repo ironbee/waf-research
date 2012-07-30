@@ -2,6 +2,6 @@
 # as path segment separator.
 #
 # @Yes RESPONSE_BODY ^test\.txt
-# @No  RESPONSE_STATYS ^400
+# @No  RESPONSE_STATUS ^400
 GET /et%2ftest.txt HTTP/1.0
 

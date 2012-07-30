@@ -5,7 +5,7 @@
 #
 POST /?b10-04 HTTP/1.0
 Content-Type: multipart/form-data; boundary=0000
-Content-Length: 275
+Content-Length: 274
 
 --0000
 Content-Disposition: form-data; name="name"
