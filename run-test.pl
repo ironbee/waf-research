@@ -9,6 +9,10 @@ $debug = 0;
 
 $count = 0;
 
+$all_payloads = ();
+
+$PAYLOAD = "";
+
 $line_terminator = "\r\n";
 
 sub perform_test {
@@ -109,7 +113,12 @@ sub perform_test {
             }
 
             if ($send_line) {
+                # Remove line terminator
                 $_ =~ s/[\r\n]//g;
+                
+                # Insert attack payload
+                $_ =~ s/\$PAYLOAD/$PAYLOAD_ENCODED/;
+                
                 print $socket $_ . $line_terminator;
                 if ($debug) { print "> $_" . $line_terminator; }
             }
@@ -213,7 +222,11 @@ sub perform_test {
         print "\n";
     }
 
-    print "$filename: $result\n";
+    if (!($PAYLOAD eq "")) {
+        print "$filename ($PAYLOAD): $result\n";
+    } else {
+        print "$filename: $result\n";
+    }
 }
 
 
@@ -240,11 +253,41 @@ if (/(.+):(.+)/) {
 }
 
 foreach $filename (@ARGV) {
-    if ($filename =~ /^-d$/) {
+    if ((defined $payload_file) && ($payload_file eq "next")) {
+        $payload_file = $filename;
+        
+        if (!open(FILE, $payload_file)) {
+            print("Could not open file $payload_file.\n");
+            return;
+        }
+        
+        $all_payloads = ();
+        
+        while(<FILE>) {
+            chomp($_);
+            push(@all_payloads, $_);
+        }
+        
+        close(FILE);
+    }
+    elsif ($filename =~ /^-d$/) {
         $debug = 1;
-    } else {
-        perform_test($filename);
-        $count++;
+    }
+    elsif ($filename =~ /^-x$/) {
+        $payload_file = "next";
+    }
+    else {
+        if (defined $payload_file) {
+            foreach $PAYLOAD (@all_payloads) {
+                $PAYLOAD_ENCODED = $PAYLOAD;
+                $PAYLOAD_ENCODED =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
+                perform_test($filename);
+                $count++;
+            }
+        } else {
+            perform_test($filename);
+            $count++;
+        }
     }
 }
 
