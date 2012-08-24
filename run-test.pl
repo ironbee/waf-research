@@ -24,6 +24,20 @@ sub trim {
     return wantarray ? @_ : $_[0] if defined wantarray;
 }
 
+sub urlencode {
+    my $s = shift;
+    $s =~ s/ /+/g;
+    $s =~ s/([^A-Za-z0-9\+-])/sprintf("%%%02X", ord($1))/seg;
+    return $s;
+}
+
+sub urldecode {
+    my $s = shift;
+    $s =~ s/\%([A-Fa-f0-9]{2})/pack('C', hex($1))/seg;
+    $s =~ s/\+/ /g;
+    return $s;
+}
+
 sub perform_test {
     my $filename = shift(@_);
 
@@ -303,10 +317,11 @@ foreach $filename (@ARGV) {
     else {
         if (defined $payload_file) {
             foreach $PAYLOAD (@all_payloads) {
-                $PAYLOAD_ENCODED = $PAYLOAD;
-                
                 if ($encode_payloads) {
-                    $PAYLOAD_ENCODED =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
+                    $PAYLOAD_ENCODED = urlencode($PAYLOAD);
+                } else {
+                    $PAYLOAD_ENCODED = $PAYLOAD;
+                    $PAYLOAD = urldecode($PAYLOAD_ENCODED);
                 }
                 
                 perform_test($filename);
