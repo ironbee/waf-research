@@ -12,6 +12,7 @@ $count = 0;
 $all_payloads = ();
 
 $PAYLOAD = "";
+$PAYLOAD_ENCODED = "";
 
 $line_terminator = "\r\n";
 
