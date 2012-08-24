@@ -15,6 +15,8 @@ $PAYLOAD = "";
 
 $line_terminator = "\r\n";
 
+$encode_payloads = 0;
+
 sub perform_test {
     my $filename = shift(@_);
 
@@ -273,6 +275,9 @@ foreach $filename (@ARGV) {
     elsif ($filename =~ /^-d$/) {
         $debug = 1;
     }
+    elsif ($filename =~ /^-e$/) {
+        $encode_payloads = 1;
+    }
     elsif ($filename =~ /^-x$/) {
         $payload_file = "next";
     }
@@ -280,8 +285,13 @@ foreach $filename (@ARGV) {
         if (defined $payload_file) {
             foreach $PAYLOAD (@all_payloads) {
                 $PAYLOAD_ENCODED = $PAYLOAD;
-                $PAYLOAD_ENCODED =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
+                
+                if ($encode_payloads) {
+                    $PAYLOAD_ENCODED =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
+                }
+                
                 perform_test($filename);
+                
                 $count++;
             }
         } else {
