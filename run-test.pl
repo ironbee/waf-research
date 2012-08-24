@@ -17,6 +17,13 @@ $line_terminator = "\r\n";
 
 $encode_payloads = 0;
 
+sub trim {
+    @_ = $_ if not @_ and defined wantarray;
+    @_ = @_ if defined wantarray;
+    for (@_ ? @_ : $_) { s/^\s+//, s/\s+$// }
+    return wantarray ? @_ : $_[0] if defined wantarray;
+}
+
 sub perform_test {
     my $filename = shift(@_);
 
@@ -258,19 +265,31 @@ foreach $filename (@ARGV) {
     if ((defined $payload_file) && ($payload_file eq "next")) {
         $payload_file = $filename;
         
-        if (!open(FILE, $payload_file)) {
+        if (!open(PFILE, $payload_file)) {
             print("Could not open file $payload_file.\n");
             return;
         }
         
         $all_payloads = ();
         
-        while(<FILE>) {
+        PLINE: while(<PFILE>) {
+            trim;
+            
+            # Ignore comments
+            if (/^#/) {
+                next PLINE;
+            }
+            
+            # Ignore empty lines
+            if (/^$/) {
+                next PLINE;
+            }
+            
             chomp($_);
             push(@all_payloads, $_);
         }
         
-        close(FILE);
+        close(PFILE);
     }
     elsif ($filename =~ /^-d$/) {
         $debug = 1;
