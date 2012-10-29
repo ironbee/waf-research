@@ -1,0 +1,32 @@
+# ModSecurity evasion exploit, for all versions before 2.7.0. ModSecurity
+# will ignore an invalid part, but PHP will remember the name and continue
+# to process data (ignoring the next boundary). The trick is to make the next
+# part a file. PHP will ignore that header, but ModSecurity will process it.
+#
+# Original advisory:
+#     SEC Consult Vulnerability Lab Security Advisory < 20121017-0 >
+#     https://www.sec-consult.com/en/advisories.html
+#
+# @OK       RESPONSE_STATUS !^200$
+# @Failed
+#
+POST /?m00-01 HTTP/1.0
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 344
+
+--0000
+Content-Disposition: form-data; name="name"
+--0000
+Content-Disposition: form-data; name="name"; filename="dummy"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--
