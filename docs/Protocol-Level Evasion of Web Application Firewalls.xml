@@ -929,14 +929,29 @@ Content-Type: multipart/form-data; boundary=0000'1111</programlisting>
                 </footnote>.</para>
         </section>
         <section>
-            <title>Part evasion</title>
-            <para>The multipart format allows arbitrary data to appear before the first part, as
-                well as after the last part. In some cases, this format can be exploited. For
-                example, PHP used to process all parts, even those that appeared after the part
-                marked as being last.</para>
-            <para>In 2009, Stefan Esser reported<footnoteref linkend="f-shocking"/> that this
-                problem could be used to bypass ModSecurity running in front of a PHP
-                application.</para>
+            <title>Part handling evasion</title>
+            <para>Each multipart/form-data payloads consists of one or more individual parts.
+                Differences in how parts are handled can sometimes lead to evasion
+                opportunities.</para>
+            <section>
+                <title>Data after the last part</title>
+                <para>The <literal>multipart/form-data</literal> format allows arbitrary data to
+                    appear before the first part, as well as after the last part. In some cases,
+                    this feature can be exploited. For example, the earlier versions of PHP used to
+                    process all parts, even those that appeared after the part marked as being
+                    last.</para>
+                <para>In 2009, Stefan Esser reported<footnoteref linkend="f-shocking"/> that this
+                    problem could be used to bypass ModSecurity running in front of a PHP
+                    application.</para>
+            </section>
+            <section>
+                <title>Invalid part handling</title>
+                <para>In 2012, SEC Consult discovered an evasion technique against ModSecurity that
+                    can be used when PHP is in the backend. As it turned out, ModSecurity would
+                    ignore an invalid multipart part whose headers were not terminated with an empty
+                    line. PHP, on the other hand, would handle such a part by ignoring the next
+                    boundary and proceeding to parse the following part.</para>
+            </section>
         </section>
         <section>
             <title>Parameter name evasion</title>
