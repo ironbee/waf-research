@@ -946,11 +946,16 @@ Content-Type: multipart/form-data; boundary=0000'1111</programlisting>
             </section>
             <section>
                 <title>Invalid part handling</title>
-                <para>In 2012, SEC Consult discovered an evasion technique against ModSecurity that
-                    can be used when PHP is in the backend. As it turned out, ModSecurity would
-                    ignore an invalid multipart part whose headers were not terminated with an empty
-                    line. PHP, on the other hand, would handle such a part by ignoring the next
-                    boundary and proceeding to parse the following part.</para>
+                <para>In 2012, SEC Consult discovered<footnote xml:id="f-secconsult-multipart">
+                        <para>SEC Consult: <link
+                                xlink:href="https://www.sec-consult.com/fxdata/seccons/prod/temedia/advisories_txt/20121017-0_mod_security_ruleset_bypass.txt"
+                                >ModSecurity multipart/invalid part ruleset bypass</link> (by
+                            Bernhard Mueller, 2012)</para>
+                    </footnote> an evasion technique against ModSecurity that can be used when PHP
+                    is in the backend. As it turned out, ModSecurity would ignore an invalid
+                    multipart part whose headers were not terminated with an empty line. PHP, on the
+                    other hand, would handle such a part by ignoring the next boundary and
+                    proceeding to parse the following part.</para>
             </section>
         </section>
         <section>
