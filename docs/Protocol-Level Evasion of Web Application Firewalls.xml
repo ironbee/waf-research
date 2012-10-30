@@ -4,7 +4,7 @@
     version="5.0">
     <info>
         <title>Protocol-Level Evasion of Web Application Firewalls</title>
-        <releaseinfo>version 1.1 (18 July 2012)</releaseinfo>
+        <releaseinfo>version 1.2 (30 October 2012)</releaseinfo>
         <author>
             <personname>
                 <firstname>Ivan</firstname>
@@ -1059,5 +1059,27 @@ filename = ';name=userid</programlisting>
         <title>Acknowledgments</title>
         <para>Thanks to Johannes Dahse, Mario Heiderich, Krzysztof Kotowicz, Marc Stern, and Josh
             Zlatin for providing feedback on the draft versions of this paper.</para>
+    </section>
+    <section>
+        <title>Changes</title>
+        <section>
+            <title>Version 1.1 (18 July 2012)</title>
+            <itemizedlist>
+                <listitem>
+                    <para>First official release.</para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section>
+            <title>Version 1.2 (30 October 2012)</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Added new SEC Consult <literal>multipart/form-data</literal> evasion
+                            against ModSecurity.</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
     </section>
 </article>
