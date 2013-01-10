@@ -319,7 +319,8 @@ foreach $filename (@ARGV) {
         if (defined $payload_file) {
             foreach $PAYLOAD (@all_payloads) {
                 if ($encode_payloads) {
-                    $PAYLOAD_ENCODED = urlencode($PAYLOAD);
+                    $PAYLOAD_ENCODED = urldecode($PAYLOAD);
+                    $PAYLOAD_ENCODED = urlencode($PAYLOAD_ENCODED);
                 } else {
                     $PAYLOAD_ENCODED = $PAYLOAD;
                     $PAYLOAD = urldecode($PAYLOAD_ENCODED);
