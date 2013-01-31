@@ -1,0 +1,25 @@
+# Test for parsers that don't look at the MIME type at all,
+# instead looking for the boundary string.
+#
+# @Blocked  RESPONSE_STATUS !^200
+# @Missed
+#
+POST /?m11-07 HTTP/1.0
+Host: localhost
+Content-Type: application/octet-stream; boundary=0000
+Content-Length: 273
+
+--0000
+Content-Disposition: form-data; name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--
