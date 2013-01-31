@@ -11,6 +11,7 @@
 # @Failed
 #
 POST /?m00-01 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary=0000
 Content-Length: 344
 

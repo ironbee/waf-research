@@ -4,6 +4,7 @@
 # @Missed
 #
 POST /?m11-06 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-datax; boundary=0000
 Content-Length: 273
 

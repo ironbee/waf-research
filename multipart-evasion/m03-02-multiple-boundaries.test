@@ -6,6 +6,7 @@
 # PHP 5.2.3 - uses first boundary
 #
 POST /?m03-02 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary="0000"; boundary=1111
 Content-Length: 273
 

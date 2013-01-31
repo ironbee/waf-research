@@ -5,6 +5,7 @@
 #
 #
 POST /?m10-01 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary=aBcD
 Content-Length: 273
 

@@ -6,6 +6,7 @@
 # - PHP 5.2.3 - uses " 0000" as boundary.
 #
 POST /?m08-02 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary=" 0000"
 Content-Length: 273
 

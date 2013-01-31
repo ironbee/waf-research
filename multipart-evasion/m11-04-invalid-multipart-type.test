@@ -4,6 +4,7 @@
 # @Missed
 #
 POST /?m11-04 HTTP/1.0
+Host: localhost
 Content-Type: multipart/digest; boundary=0000
 Content-Length: 273
 

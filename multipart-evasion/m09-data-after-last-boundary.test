@@ -6,6 +6,7 @@
 # - PHP 5.3.0 ignores parts after final boundary
 #
 POST /?m09-01 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary=0000
 Content-Length: 357
 

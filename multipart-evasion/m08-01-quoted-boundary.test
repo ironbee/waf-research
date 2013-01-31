@@ -6,6 +6,7 @@
 # PHP 5.2.3 - no effect (uses "0000" -- no quotes in the boundary)
 #
 POST /?m08-01 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary="0000"
 Content-Length: 273
 

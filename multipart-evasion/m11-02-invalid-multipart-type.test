@@ -4,6 +4,7 @@
 # @Missed
 #
 POST /?m11-02 HTTP/1.0
+Host: localhost
 Content-Type: multipart/mixed; boundary=0000
 Content-Length: 273
 

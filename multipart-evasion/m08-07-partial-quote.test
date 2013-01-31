@@ -6,6 +6,7 @@
 # - PHP 5.2.3 - breaks parsing
 #
 POST /?m08-07 HTTP/1.0
+Host: localhost
 Content-Type: multipart/form-data; boundary=0000"
 Content-Length: 273
 
