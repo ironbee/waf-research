@@ -1,29 +1,27 @@
-# Use more than one boundary
+# Use more than one boundary.
 #
 # @Blocked  				RESPONSE_STATUS !^200
 # @Reflected 				RESPONSE_BODY john.smith@example.com
 # @AllowedNotReflected
 #
-# PHP 		5.2.3			Reflected
-# PHP 		5.4.3			Reflected
-# ASP.Net 	4.0.30319  		Reflected
+# ASP.Net 	4.0.30319  		Reflected (b "0000;")
 #
-POST /?m03-02 HTTP/1.0
+POST /?m03-04 HTTP/1.0
 Host: localhost
-Content-Type: multipart/form-data; boundary="0000"; boundary=1111
-Content-Length: 273
+Content-Type: multipart/form-data; boundary=0000; boundary=1111
+Content-Length: 263
 
---0000
+--0000;
 Content-Disposition: form-data; name="name"
 
 John Smith
---0000
+--0000;
 Content-Disposition: form-data; name="email"
 
 john.smith@example.com
---0000
+--0000;
 Content-Disposition: form-data; name="image"; filename="image.jpg"
 Content-Type: image/jpeg
 
 BINARYDATA
---0000--
+--0000;--

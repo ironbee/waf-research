@@ -2,10 +2,12 @@
 # implementations that search for "boundary", then search for "=",
 # missing the stuff in between.
 #
-# @Blocked  RESPONSE_STATUS !^200
-# @Missed
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY john.smith@example.com
+# @AllowedNotReflected
 #
-# PHP 5.2.3 - does not recognise boundary.
+# PHP 		5.4.3  			Reflected
+# ASP.Net 	4.0.30319  		AllowedNotReflected
 #
 POST /?m02-02 HTTP/1.0
 Host: localhost

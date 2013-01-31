@@ -1,9 +1,11 @@
-# Test C-T parsing sensitivity: C-T header uses only space as character after MIME type.
+# Test C-T parsing sensitivity: C-T header with only one space after the MIME type.
 #
-# @Blocked  RESPONSE_STATUS !^200$
-# @Missed
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY john.smith@example.com
+# @AllowedNotReflected
 #
-# PHP 5.2.3 - no effect
+# PHP 		5.4.3  			Reflected
+# ASP.Net 	4.0.30319  		Reflected
 #
 POST /?m01-02 HTTP/1.0
 Host: localhost

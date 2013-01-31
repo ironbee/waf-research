@@ -1,9 +1,12 @@
 # Use more than one boundary.
 #
-# @Blocked  RESPONSE_STATUS !^200
-# @Missed
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY john.smith@example.com
+# @AllowedNotReflected
 #
-# PHP 5.2.3 - uses "0000; boundary=1111" as boundary
+# PHP 		5.2.3			AllowedNotReflected (b "0000; boundary=1111")
+# PHP		5.4.3			Reflected
+# ASP.Net 	4.0.30319  		AllowedNotReflected (b "0000;")
 #
 POST /?m03-01 HTTP/1.0
 Host: localhost
