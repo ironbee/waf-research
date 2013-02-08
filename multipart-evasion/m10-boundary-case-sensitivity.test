@@ -1,8 +1,8 @@
 # Test for case-insensitive comparison of boundary values.
 #
-# @Blocked  RESPONSE_STATUS !^200
-# @Missed
-#
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY john.smith@example.com
+# @AllowedNotReflected
 #
 POST /?m10-01 HTTP/1.0
 Host: localhost

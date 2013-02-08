@@ -5,8 +5,9 @@
 #
 # - PHP 5.2.3 - no effect
 #
-# @Blocked  RESPONSE_STATUS !^200
-# @Missed
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY Smith
+# @AllowedNotReflected
 #
 POST /?m13-02 HTTP/1.0
 Host: localhost
