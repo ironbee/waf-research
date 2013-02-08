@@ -1,0 +1,33 @@
+# Use header folding to split a C-D line into two. It is not known
+# that any programmatic tools use this feature.
+#
+# This test demonstrates the behaviour of PHP, which folds header
+# lines that do not contain a semi-colon, even when they do not
+# begin with a LWS.
+#
+# - PHP 5.2.3 - no effect
+#
+# @Blocked  				RESPONSE_STATUS !^200
+# @Reflected 				RESPONSE_BODY Smith
+# @AllowedNotReflected
+#
+POST /?m13-05 HTTP/1.0
+Host: localhost
+Content-Type: multipart/form-data; boundary=0000
+Content-Length: 274
+
+--0000
+Content-Disposition: form-data;
+name="name"
+
+John Smith
+--0000
+Content-Disposition: form-data; name="email"
+
+john.smith@example.com
+--0000
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+BINARYDATA
+--0000--
