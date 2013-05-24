@@ -2,7 +2,7 @@
 
 use IO::Socket;
 
-$USAGE = "Usage: $0 host[:port] [-d] testfile1, testfile2, ...\n";
+$USAGE = "Usage: $0 host[:port] [-d] [-ssl] [-p proxyhost[:proxyport]] [-b path] testfile1, testfile2, ...\n";
 $USERAGENT = "HTTP test utility";
 
 $debug = 0;
@@ -17,6 +17,13 @@ $PAYLOAD_ENCODED = "";
 $line_terminator = "\r\n";
 
 $encode_payloads = 0;
+
+my $SSL = 0;
+my $PROXY_host = "";
+my $PROXY_port = 0;
+
+my $BASEPATH = "";
+
 
 sub trim {
     @_ = $_ if not @_ and defined wantarray;
@@ -47,7 +54,18 @@ sub perform_test {
         return;
     }
 
-    $socket = IO::Socket::INET->new(Proto => 'tcp', PeerAddr => $server, PeerPort => $port, Timeout => 10);
+    my $socket = undef;
+    if ($PROXY_host && $PROXY_port) {
+        $socket = IO::Socket::INET->new(Proto => 'tcp', PeerAddr => $PROXY_host, PeerPort => $PROXY_port, Timeout => 10);
+        if ($debug) { print "Connected to proxy $PROXY_host:$PROXY_port" . $line_terminator }
+    } else {
+        if ($SSL) {
+            require IO::Socket::SSL;
+            $socket = IO::Socket::SSL->new(Proto => 'tcp', PeerAddr => $server, PeerPort => $port, Timeout => 10);
+        } else {
+            $socket = IO::Socket::INET->new(Proto => 'tcp', PeerAddr => $server, PeerPort => $port, Timeout => 10);
+        }
+    }
 
     if(!$socket) {
         # this is treated as a serious problem and we
@@ -142,6 +160,14 @@ sub perform_test {
                 
                 # Insert attack payload
                 $_ =~ s/\$PAYLOAD/$PAYLOAD_ENCODED/;
+
+                if ($BASEPATH) {
+                    $_ =~ s# /# $BASEPATH#;
+                }
+
+                if ($PROXY_host && $PROXY_port) {
+                    $_ =~ s# /# http://$server:$port/#;
+                }
                 
                 print $socket $_ . $line_terminator;
                 if ($debug) { print "> $_" . $line_terminator; }
@@ -306,6 +332,23 @@ foreach $filename (@ARGV) {
         
         close(PFILE);
     }
+    elsif ((defined $proxy) && ($proxy eq "proxy")) {
+        if ($filename =~ /(.+):(.+)/) {
+            $PROXY_host = $1;
+            $PROXY_port = $2;
+        } else {
+            $PROXY_host = $_;
+            $PROXY_port = 80;
+        }
+        
+        $proxy = undef;
+    }
+    elsif ((defined $path) && ($path eq "basepath")) {
+        $BASEPATH = $filename;
+        $BASEPATH =~ s#^/*(.*?)/*$#/$1/#;
+
+        $path = undef;
+    }
     elsif ($filename =~ /^-d$/) {
         $debug = 1;
     }
@@ -314,6 +357,15 @@ foreach $filename (@ARGV) {
     }
     elsif ($filename =~ /^-x$/) {
         $payload_file = "next";
+    }
+    elsif ($filename =~ /^-s(?:sl)?$/) {
+        $SSL = 1;
+    }
+    elsif ($filename =~ /^-p$/) {
+        $proxy = "proxy";
+    }
+    elsif ($filename =~ /^-b$/) {
+        $path = "basepath";
     }
     else {
         if (defined $payload_file) {
