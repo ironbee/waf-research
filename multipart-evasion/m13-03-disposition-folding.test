@@ -1,6 +1,10 @@
 # Use header folding to split a C-D line into two. It is not known
 # that any programmatic tools use this feature.
 #
+# This test is designed to see if the name parameter, whose C-D
+# test is folded, will be ignored, or will just the second header
+# part be ignored.
+#
 # - PHP 5.2.3 - no effect
 #
 # @Blocked  				RESPONSE_STATUS !^200
