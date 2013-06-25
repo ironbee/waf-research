@@ -9,7 +9,9 @@ Longs shots below:
   - base64
 
 - Field names can be encoded using RFC 2047, but are there any implementations
-  that support this feature?
+  that support this feature? Yes! Tomcat supports this now:
+
+  https://issues.apache.org/jira/browse/FILEUPLOAD-199
 
 - The spec allows submission of multiple files using multipart/mixed, but I
   am not aware of anyone implementing this feature.
