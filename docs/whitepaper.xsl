@@ -17,21 +17,19 @@
 
     <!-- Specify font families for the entire document -->
     <xsl:param name="fd.mono.font.family">Courier</xsl:param>
-    <xsl:param name="fd.body.font.family">PT Serif</xsl:param>
-    <xsl:param name="fd.title.font.family">Arimo</xsl:param>
+    <xsl:param name="fd.body.font.family">serif</xsl:param>
+    <xsl:param name="fd.title.font.family">sans-serif</xsl:param>
+    <xsl:param name="fd.sans.font.family">sans-serif</xsl:param>
 
     <!-- The following must be enabled to prevent a FOP exception, not sure why -->
     <xsl:param name="fop1.extensions">1</xsl:param>
 
-    <xsl:param name="draft.mode">1</xsl:param>
+    <xsl:param name="draft.mode">no</xsl:param>
     <xsl:param name="draft.watermark.image"/>
 
     <!-- Page formatting -->
     <xsl:param name="paper.type">A4</xsl:param>
-    <!--
-    <xsl:param name="page.width.portrait">7.50in</xsl:param>
-    <xsl:param name="page.height.portrait">9.25in</xsl:param>
-    -->
+        
     <xsl:param name="page.margin.inner">1.0in</xsl:param>
     <xsl:param name="page.margin.outer">1.0in</xsl:param>
 
@@ -49,7 +47,7 @@
     <xsl:param name="body.font.family">
         <xsl:value-of select="$fd.body.font.family"/>
     </xsl:param>
-    <xsl:param name="body.font.master">11</xsl:param>
+    <xsl:param name="body.font.master">12</xsl:param>
     <xsl:param name="body.start.indent">0pt</xsl:param>
     <xsl:param name="body.space-before.optimum">10pt</xsl:param>
     <xsl:param name="line-height">1.4</xsl:param>
@@ -339,7 +337,7 @@
         <xsl:attribute name="font-weight">normal</xsl:attribute>
         <xsl:attribute name="text-align">left</xsl:attribute>
         <xsl:attribute name="line-height">10pt</xsl:attribute>
-        <xsl:attribute name="font-family">Minion</xsl:attribute>
+        <xsl:attribute name="font-family"><xsl:value-of select="$fd.sans.font.family"/></xsl:attribute>
         <xsl:attribute name="space-after.optimum">5.3em</xsl:attribute>
     </xsl:attribute-set>
 
@@ -356,9 +354,7 @@
 
     <!-- Table and figure title -->
     <xsl:attribute-set name="formal.title.properties">
-        <xsl:attribute name="font-family">
-            <xsl:value-of select="$fd.title.font.family"/>
-        </xsl:attribute>
+        <xsl:attribute name="font-family"><xsl:value-of select="$fd.title.font.family"/></xsl:attribute>
         <xsl:attribute name="font-size">10pt</xsl:attribute>
         <xsl:attribute name="font-weight">bold</xsl:attribute>
         <xsl:attribute name="space-before.minimum">0.4em</xsl:attribute>
@@ -619,7 +615,7 @@
                     </fo:table-row>
                     <fo:table-row>
                         <fo:table-cell display-align="center">
-                            <fo:block text-align="center" font-size="10pt" font-weight="bold">
+                            <fo:block text-align="center" font-size="10pt" font-weight="normal" font-family="{$fd.title.font.family}">
                                 <fo:basic-link external-destination="url(https://www.qualys.com)"
                                     >www.qualys.com</fo:basic-link>
                             </fo:block>
@@ -634,8 +630,8 @@
     </xsl:template>
 
     <!-- Do not show the URLs we link to. This feature may be appropriate for print, though. -->
-    <xsl:param name="ulink.show" select="1"/>
-    <xsl:param name="ulink.footnotes" select="1"/>
+    <xsl:param name="ulink.show" select="0" />
+    <xsl:param name="ulink.footnotes" select="1" />
 
     <xsl:attribute-set name="xref.properties">
         <!--
@@ -649,7 +645,5 @@
         <xsl:attribute name="text-decoration">underline</xsl:attribute>
         -->
     </xsl:attribute-set>
-
-   
-
+  
 </xsl:stylesheet>

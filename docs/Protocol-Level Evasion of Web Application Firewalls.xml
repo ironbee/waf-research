@@ -14,12 +14,7 @@
         <copyright>
             <year>2012</year>
             <holder>Qualys</holder>
-        </copyright>
-        <!--
-        <abstract>
-            <para>Some text here</para>
-        </abstract>
-        -->
+        </copyright>        
     </info>
     <section>
         <title>Introduction</title>
@@ -33,7 +28,7 @@
             of PCI compliance<footnote>
                 <para>PCI Data Security Standard (PCI DSS): Application Reviews and Web Application
                     Firewalls Clarified (2008)</para>
-            </footnote>. I remember <emphasis role="italic">almost </emphasis>hearing a collective
+            </footnote>. I remember <emphasis role="italic">almost</emphasis> hearing a collective
             sigh of relief from the WAF vendors. Certainly, their daily lives suddenly became
             easier. Today, we have a wide deployment of WAFs, although the doubts and controversies
             remain.</para>
@@ -1062,7 +1057,7 @@ filename = ';name=userid</programlisting>
     </section>
     <section>
         <title>Changes</title>
-        <section>
+        <section renderas="sect3">
             <title>Version 1.1 (18 July 2012)</title>
             <itemizedlist>
                 <listitem>
@@ -1070,7 +1065,7 @@ filename = ';name=userid</programlisting>
                 </listitem>
             </itemizedlist>
         </section>
-        <section>
+        <section renderas="sect3">
             <title>Version 1.2 (30 October 2012)</title>
             <para>
                 <itemizedlist>
